@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Check, Ghost, Flame } from "lucide-react";
+import { Check, Lock, ShieldCheck } from "lucide-react";
 
 interface NotificationItem {
   name: string;
   action: string;
 }
 
-// Brand new unique batch of 50 first names
 const firstNames = [
   "Audrey", "Bennett", "Camden", "Dakota", "Easton", "Freya", "Gideon", "Hayden", "Iris", "Jonah",
   "Kinsley", "Landon", "Maeve", "Nico", "Ophelia", "Parker", "Reagan", "Sawyer", "Teagan", "Vance",
@@ -35,7 +34,27 @@ const notifications: NotificationItem[] = Array.from({ length: 100 }, (_, i) => 
 export default function AnnouncementBar() {
   const [currentNotif, setCurrentNotif] = useState<NotificationItem | null>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  
+  // 5-minute initial timer countdown state (300 seconds)
+  const [timeLeft, setTimeLeft] = useState<number>(271); // starts around 04:31
 
+  // Countdown timer logic
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  // Format seconds to [ MM:SS ]
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `[ ${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")} ]`;
+  };
+
+  // Toast notification interval logic
   useEffect(() => {
     const showRandomNotif = () => {
       const randomIndex = Math.floor(Math.random() * notifications.length);
@@ -63,33 +82,43 @@ export default function AnnouncementBar() {
 
   return (
     <>
-      {/* Top Banner Bar Container */}
+      {/* Optimized Header Banner Container */}
       <div 
-        className="sticky top-0 z-50 w-full bg-[#f17a20] border-b border-black/15 py-2.5 px-3 sm:px-4 shadow-md min-h-[44px]"
-        style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 10px)" }}
+        className="sticky top-0 z-50 w-full bg-[#111111] text-white border-b border-white/10 shadow-lg select-none"
+        style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 8px)", paddingBottom: "10px" }}
       >
-        {/* Background Floating Spooky Icons */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
-          <Ghost 
-            className="absolute left-[3%] sm:left-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-white animate-bounce" 
-            strokeWidth={2}
-          />
-          <Flame 
-            className="absolute right-[3%] sm:right-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-yellow-200 animate-pulse" 
-            strokeWidth={2}
-          />
-        </div>
+        <div className="max-w-4xl mx-auto px-3 flex flex-col items-center justify-center gap-1.5 text-center">
+          
+          {/* Top Line: Reservation Message + Live Timer */}
+          <div className="flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold tracking-tight">
+            <span role="img" aria-label="lock" className="text-base leading-none">
+              🔒
+            </span>
+            <span>
+              Your <strong className="text-[#f17a20]">Popeyes</strong> reward spot is reserved for:
+            </span>
+            <span className="font-mono bg-white/10 text-white/90 px-2 py-0.5 rounded text-xs tracking-wider border border-white/10">
+              {formatTime(timeLeft)}
+            </span>
+          </div>
 
-        {/* Bottom Glowing Accent Line */}
-        <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-white/70 to-transparent w-full opacity-90 overflow-hidden">
-          <div className="absolute inset-0 bg-white animate-shine"></div>
+          {/* Bottom Line: Social Proof & Security Badges */}
+          <div className="flex items-center justify-center gap-2 text-[10px] sm:text-xs font-bold tracking-wider text-white/80 uppercase">
+            <span>OVER 1,400+ VERIFIED TODAY</span>
+            <span className="text-white/30">•</span>
+            <div className="flex items-center gap-1 text-sky-400">
+              <ShieldCheck className="w-3.5 h-3.5 fill-sky-500/20 text-sky-400 inline" strokeWidth={2.5} />
+              <span className="text-white/90">256-BIT SSL SECURED</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
       {/* Floating Social Proof Toast */}
       {currentNotif && (
         <div
-          className={`fixed top-16 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-orange-300/40 bg-[#f17a20] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
+          className={`fixed top-20 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-orange-400/30 bg-[#f17a20] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
             isVisible
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"
