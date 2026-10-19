@@ -79,7 +79,7 @@ const HeroBranding = () => {
         <div className="flex items-center justify-center gap-1.5 w-full text-center">
           <span className="text-sm select-none">🎃</span>
           <p className="text-[13px] sm:text-sm md:text-[15px] text-slate-700 font-medium leading-relaxed whitespace-nowrap font-poppins">
-            Here&apos;s how to qualify for a <span className="text-orange-600 font-bold">$100 gift card</span>
+            Here&apos;s how to qualify for a <span className="text-orange-600 font-bold">$500 gift card</span>
           </p>
           <span className="text-sm select-none">🎃</span>
         </div>
