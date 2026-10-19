@@ -3,7 +3,7 @@
 import React from 'react';
 import { Gift } from 'lucide-react';
 
-const BEAR_URL = "https://giftclick.org/aff_c?offer_id=1765&aff_id=200438&source=DUNKIN";
+const BEAR_URL = "https://giftclick.org/aff_c?offer_id=4522&aff_id=200438&source=POPEYES";
 
 const HeroBranding = () => {
   const handleClick = () => {
