@@ -50,7 +50,7 @@ const HeroBranding = () => {
           {/* Main Card Image */}
           <div className="relative z-10 w-[240px] sm:w-[320px] mx-auto transition-transform duration-500 group-hover:scale-105">
             <img 
-              src="https://i.imgur.com/WuADG9H.png" 
+              src="https://i.imgur.com/BnpflgR.png" 
               alt="Build-A-Bear $250 Gift Card" 
               className="w-full h-auto rounded-2xl shadow-lg border border-purple-900/10"
             />
@@ -68,7 +68,7 @@ const HeroBranding = () => {
         <div className="relative">
           <h1 className="text-[22px] md:text-[28px] font-extrabold leading-tight tracking-tight flex items-center justify-center gap-x-2 flex-wrap font-poppins">
             <span className="text-[#2d124d]">Unlock</span>
-            <span className="text-[#df6a25]">Dunkin Reward</span>
+            <span className="text-[#df6a25]">Popeyes Reward</span>
             <div className="flex items-center -ml-1">
               <Gift className="w-6 h-6 text-orange-500 fill-orange-500/20" />
             </div>
