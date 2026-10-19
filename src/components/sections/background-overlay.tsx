@@ -27,7 +27,7 @@ const AnimatedBackground = () => {
       {/* Edge Image Overlays */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-[0.08] z-0">
         <Image
-          src="https://i.imgur.com/PYS9voZ.png"
+          src="https://i.imgur.com/wBR1AeN.png"
           alt=""
           width={100}
           height={100}
@@ -35,7 +35,7 @@ const AnimatedBackground = () => {
           className="absolute top-12 left-2 w-14 h-14 object-contain animate-float-gentle delay-1000"
         />
         <Image
-          src="https://i.imgur.com/nhNXZtC.png"
+          src="https://i.imgur.com/ygxHoLg.png"
           alt=""
           width={160}
           height={160}
@@ -43,7 +43,7 @@ const AnimatedBackground = () => {
           className="absolute top-24 right-2 w-16 h-16 object-contain animate-float-gentle"
         />
         <Image
-          src="https://i.imgur.com/NXdv9ue.png"
+          src="https://i.imgur.com/GOC3Kll.png"
           alt=""
           width={160}
           height={160}
@@ -51,7 +51,7 @@ const AnimatedBackground = () => {
           className="absolute top-[42%] left-2 w-16 h-16 object-contain animate-float-gentle"
         />
         <Image
-          src="https://i.imgur.com/5f3sEmh.png"
+          src="https://i.imgur.com/lXjkpxD.png"
           alt=""
           width={160}
           height={160}
@@ -59,7 +59,7 @@ const AnimatedBackground = () => {
           className="absolute top-[78%] right-2 w-16 h-16 object-contain animate-float-gentle"
         />
         <Image
-          src="https://i.imgur.com/ajoPUk9.png"
+          src="https://i.imgur.com/jTqrn7Y.png"
           alt=""
           width={160}
           height={160}
@@ -67,7 +67,7 @@ const AnimatedBackground = () => {
           className="absolute bottom-20 left-3 w-16 h-16 object-contain animate-float-gentle"
         />
         <Image
-          src="https://i.imgur.com/ZLM3E3T.png"
+          src="https://i.imgur.com/lD0F3KY.png"
           alt=""
           width={80}
           height={80}
