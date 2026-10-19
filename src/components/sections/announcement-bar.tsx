@@ -19,8 +19,8 @@ const firstNames = [
 const lastInitials = ["B.", "D.", "F.", "H.", "J.", "L.", "M.", "P.", "Q.", "V.", "X.", "Z.", "K.", "N.", "R."];
 
 const actions = [
-  "just claimed a $100 Dunkin card!",
-  "just claimed a $100 Halloween voucher!",
+  "just claimed a $500 Popeyes card!",
+  "just claimed a $500 voucher!",
   "just unlocked reward eligibility!",
   "just completed the review survey!",
   "just verified eligibility!"
@@ -64,43 +64,43 @@ export default function AnnouncementBar() {
     <>
       {/* Top Banner Bar Container */}
       <div 
-        className="sticky top-0 z-50 w-full bg-[#df6a25] border-b border-amber-300/40 py-2.5 px-3 sm:px-4 shadow-md min-h-[44px]"
+        className="sticky top-0 z-50 w-full bg-[#2d124d] border-b border-orange-500/40 py-2.5 px-3 sm:px-4 shadow-md min-h-[44px]"
         style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 10px)" }}
       >
         {/* Background Floating Spooky Icons */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
           <Ghost 
-            className="absolute left-[3%] sm:left-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-orange-100 animate-bounce" 
+            className="absolute left-[3%] sm:left-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-purple-300 animate-bounce" 
             strokeWidth={2}
           />
           <Flame 
-            className="absolute right-[3%] sm:right-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-amber-200 animate-pulse" 
+            className="absolute right-[3%] sm:right-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-orange-400 animate-pulse" 
             strokeWidth={2}
           />
         </div>
 
         {/* Bottom Glowing Accent Line */}
-        <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-amber-200 to-transparent w-full opacity-90 overflow-hidden">
-          <div className="absolute inset-0 bg-amber-100 animate-shine"></div>
+        <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent w-full opacity-90 overflow-hidden">
+          <div className="absolute inset-0 bg-orange-300 animate-shine"></div>
         </div>
       </div>
 
       {/* Floating Social Proof Toast */}
       {currentNotif && (
         <div
-          className={`fixed top-16 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-amber-300/50 bg-[#df6a25] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
+          className={`fixed top-16 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-purple-300 bg-[#2d124d] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
             isVisible
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"
           }`}
         >
-          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-950 text-orange-400">
-            <Check className="w-3 h-3 text-orange-400" strokeWidth={3} />
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-500 text-slate-950">
+            <Check className="w-3 h-3 text-slate-950" strokeWidth={3} />
           </div>
 
           <div className="text-[10px] sm:text-[11px] text-white truncate leading-tight">
-            <span className="font-extrabold text-amber-200">{currentNotif.name} </span>
-            <span className="text-orange-50">{currentNotif.action}</span>
+            <span className="font-extrabold text-orange-300">{currentNotif.name} </span>
+            <span className="text-purple-100">{currentNotif.action}</span>
           </div>
         </div>
       )}
