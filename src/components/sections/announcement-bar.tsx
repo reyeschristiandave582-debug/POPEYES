@@ -21,7 +21,7 @@ const lastInitials = ["A.", "C.", "E.", "G.", "H.", "J.", "K.", "L.", "M.", "N."
 
 const actions = [
   "just claimed a $100 Popeyes card!",
-  "just claimed a $100 Halloween voucher!",
+  "just claimed a $100 voucher!",
   "just unlocked reward eligibility!",
   "just completed the review survey!",
   "just verified eligibility!"
