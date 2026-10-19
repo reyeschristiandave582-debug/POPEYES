@@ -9,7 +9,7 @@ const MainLogo = () => {
       onClick={() => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://giftclick.org/aff_c?offer_id=1765&aff_id=200438&source=DUNKIN" } }, "*")}
     >
       <img 
-        src="https://i.imgur.com/KEG2oQj.png" 
+        src="https://i.imgur.com/t9RwhKe.png" 
         alt="Build-A-Bear Logo" 
         className="h-18 sm:h-15 w-20 object-contain transition-all duration-700 hover:brightness-120"
       />
