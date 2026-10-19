@@ -50,7 +50,7 @@ const HeroBranding = () => {
           {/* Main Card Image */}
           <div className="relative z-10 w-[240px] sm:w-[320px] mx-auto transition-transform duration-500 group-hover:scale-105">
             <img 
-              src="https://i.imgur.com/eZabLic.png" 
+              src="https://i.imgur.com/ja6bGvq.png" 
               alt="Build-A-Bear $250 Gift Card" 
               className="w-full h-auto rounded-2xl shadow-lg border border-purple-900/10"
             />
