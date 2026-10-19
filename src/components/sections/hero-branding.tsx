@@ -1,91 +1,109 @@
 "use client";
 
-import React from 'react';
-import { Gift } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { Check, Ghost, Flame } from "lucide-react";
 
-const BEAR_URL = "https://giftclick.org/aff_c?offer_id=4522&aff_id=200438&source=POPEYES";
+interface NotificationItem {
+  name: string;
+  action: string;
+}
 
-const HeroBranding = () => {
-  const handleClick = () => {
-    if (typeof window !== 'undefined' && window.parent) {
-      window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: BEAR_URL } }, "*");
-    }
-  };
+const firstNames = [
+  "Adrian", "Brianna", "Caleb", "Delilah", "Ezra", "Freya", "Gavin", "Hazel", "Ian", "Jasmine",
+  "Kai", "Leilani", "Miles", "Nora", "Oscar", "Piper", "Quinn", "Rowan", "Stella", "Tristan",
+  "Uriah", "Violet", "Weston", "Ximena", "Yusuf", "Zoe", "Asher", "Brooke", "Colton", "Dahlia",
+  "Emmett", "Fiona", "Graham", "Hadley", "Isaiah", "Juliet", "Kaden", "Lyla", "Milo", "Nina",
+  "Orion", "Paige", "Ryder", "Sienna", "Tate", "Vera", "Xander", "Zara", "Holden", "Gemma"
+];
+
+const lastInitials = ["B.", "D.", "F.", "H.", "J.", "L.", "M.", "P.", "Q.", "V.", "X.", "Z.", "K.", "N.", "R."];
+
+const actions = [
+  "just claimed a $100 Dunkin card!",
+  "just claimed a $100 Halloween voucher!",
+  "just unlocked reward eligibility!",
+  "just completed the review survey!",
+  "just verified eligibility!"
+];
+
+const notifications: NotificationItem[] = Array.from({ length: 100 }, (_, i) => ({
+  name: `${firstNames[(i * 7) % firstNames.length]} ${lastInitials[(i * 5) % lastInitials.length]}`,
+  action: actions[i % actions.length]
+}));
+
+export default function AnnouncementBar() {
+  const [currentNotif, setCurrentNotif] = useState<NotificationItem | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    const showRandomNotif = () => {
+      const randomIndex = Math.floor(Math.random() * notifications.length);
+      setCurrentNotif(notifications[randomIndex]);
+      setIsVisible(true);
+
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 3500);
+    };
+
+    const initialTimer = setTimeout(() => {
+      showRandomNotif();
+    }, 1500);
+
+    const interval = setInterval(() => {
+      showRandomNotif();
+    }, 7000);
+
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
-    <div className="relative z-10 max-w-[512px] mx-auto px-4 pt-0 pb-0 text-center -mt-2">
-      {/* Brand Header Marquee */}
+    <>
+      {/* Top Banner Bar Container */}
       <div 
-        className="mb-1 overflow-hidden relative cursor-pointer"
-        onClick={handleClick}
+        className="sticky top-0 z-50 w-full bg-[#df6a25] border-b border-black/15 py-2.5 px-3 sm:px-4 shadow-md min-h-[44px]"
+        style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 10px)" }}
       >
-        <div className="flex animate-marquee whitespace-nowrap min-w-full will-change-transform">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="flex items-center mx-4">
-              <img 
-                src="https://i.imgur.com/OzrE6zh.png" 
-                alt="Build-A-Bear Workshop Logo" 
-                className="h-8 sm:h-10 w-auto object-contain"
-              />
-            </div>
-          ))}
-          {[...Array(10)].map((_, i) => (
-            <div key={`dup-${i}`} className="flex items-center mx-4">
-              <img 
-                src="https://i.imgur.com/PYS9voZ.png" 
-                alt="Build-A-Bear Workshop Logo" 
-                className="h-8 sm:h-10 w-auto object-contain"
-              />
-            </div>
-          ))}
+        {/* Background Floating Spooky Icons */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+          <Ghost 
+            className="absolute left-[3%] sm:left-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-white animate-bounce" 
+            strokeWidth={2}
+          />
+          <Flame 
+            className="absolute right-[3%] sm:right-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-yellow-200 animate-pulse" 
+            strokeWidth={2}
+          />
+        </div>
+
+        {/* Bottom Glowing Accent Line */}
+        <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-white/70 to-transparent w-full opacity-90 overflow-hidden">
+          <div className="absolute inset-0 bg-white animate-shine"></div>
         </div>
       </div>
 
-      {/* Gift Card Visual */}
-      <div 
-        className="relative mb-1 group cursor-pointer"
-        onClick={handleClick}
-      >
-        <div className="relative inline-block animate-float will-change-transform">
-          {/* Main Card Image */}
-          <div className="relative z-10 w-[240px] sm:w-[320px] mx-auto transition-transform duration-500 group-hover:scale-105">
-            <img 
-              src="https://i.imgur.com/hXfN5h8.png" 
-              alt="Build-A-Bear $250 Gift Card" 
-              className="w-full h-auto rounded-2xl shadow-lg border border-purple-900/10"
-            />
-            
-            {/* Interactive Shine */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
-            </div>
+      {/* Floating Social Proof Toast */}
+      {currentNotif && (
+        <div
+          className={`fixed top-16 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-orange-200/40 bg-[#df6a25] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
+            isVisible
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-3 opacity-0"
+          }`}
+        >
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-[#df6a25]">
+            <Check className="w-3 h-3 text-[#df6a25]" strokeWidth={3} />
+          </div>
+
+          <div className="text-[10px] sm:text-[11px] text-white truncate leading-tight">
+            <span className="font-extrabold text-yellow-100">{currentNotif.name} </span>
+            <span className="text-white/90">{currentNotif.action}</span>
           </div>
         </div>
-      </div>
-
-      {/* Main Headline */}
-      <div className="flex flex-col items-center gap-0.5 px-2">
-        <div className="relative">
-          <h1 className="text-[22px] md:text-[28px] font-extrabold leading-tight tracking-tight flex items-center justify-center gap-x-2 flex-wrap font-poppins">
-            <span className="text-[#2d124d]">Unlock</span>
-            <span className="text-[#df6a25]">Popeyes Reward</span>
-            <div className="flex items-center -ml-1">
-              <Gift className="w-6 h-6 text-orange-500 fill-orange-500/20" />
-            </div>
-          </h1>
-        </div>
-        
-        {/* Sub-headline with Pumpkin Halloween Accents */}
-        <div className="flex items-center justify-center gap-1.5 w-full text-center">
-          <span className="text-sm select-none">🎃</span>
-          <p className="text-[13px] sm:text-sm md:text-[15px] text-slate-700 font-medium leading-relaxed whitespace-nowrap font-poppins">
-            Here&apos;s how to qualify for a <span className="text-orange-600 font-bold">$500 gift card</span>
-          </p>
-          <span className="text-sm select-none">🎃</span>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
-};
-
-export default HeroBranding;
+}
