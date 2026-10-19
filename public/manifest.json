@@ -1,0 +1,27 @@
+{
+  "name": "Marshalls Gift Card",
+  "short_name": "Marshalls",
+  "description": "Participate in the Marshalls Rewards program and get a chance to claim a $1000 gift card.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+    "icons": [
+      {
+        "src": "https://i.imgur.com/WgqTcs5.png?v=11",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "https://i.imgur.com/WgqTcs5.png?v=11",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "https://i.imgur.com/WgqTcs5.png?v=11",
+        "sizes": "180x180",
+        "type": "image/png",
+        "purpose": "apple-touch-icon"
+      }
+    ]
+}
