@@ -8,15 +8,16 @@ interface NotificationItem {
   action: string;
 }
 
+// Brand new unique batch of 50 first names
 const firstNames = [
-  "Adrian", "Brianna", "Caleb", "Delilah", "Ezra", "Freya", "Gavin", "Hazel", "Ian", "Jasmine",
-  "Kai", "Leilani", "Miles", "Nora", "Oscar", "Piper", "Quinn", "Rowan", "Stella", "Tristan",
-  "Uriah", "Violet", "Weston", "Ximena", "Yusuf", "Zoe", "Asher", "Brooke", "Colton", "Dahlia",
-  "Emmett", "Fiona", "Graham", "Hadley", "Isaiah", "Juliet", "Kaden", "Lyla", "Milo", "Nina",
-  "Orion", "Paige", "Ryder", "Sienna", "Tate", "Vera", "Xander", "Zara", "Holden", "Gemma"
+  "Audrey", "Bennett", "Camden", "Dakota", "Easton", "Freya", "Gideon", "Hayden", "Iris", "Jonah",
+  "Kinsley", "Landon", "Maeve", "Nico", "Ophelia", "Parker", "Reagan", "Sawyer", "Teagan", "Vance",
+  "Wren", "Xavier", "Yara", "Zachary", "Ayla", "Bodhi", "Cora", "Declan", "Ember", "Finnegan",
+  "Georgia", "Hendrix", "Ivy", "Jasper", "Kaia", "Lennon", "Margot", "Nehemiah", "Oakley", "Phoebe",
+  "Reese", "Silas", "Tatum", "Valerie", "Westley", "Xiomara", "Yael", "Zion", "Adeline", "Beckett"
 ];
 
-const lastInitials = ["B.", "D.", "F.", "H.", "J.", "L.", "M.", "P.", "Q.", "V.", "X.", "Z.", "K.", "N.", "R."];
+const lastInitials = ["A.", "C.", "E.", "G.", "H.", "J.", "K.", "L.", "M.", "N.", "P.", "R.", "S.", "T.", "W."];
 
 const actions = [
   "just claimed a $100 Dunkin card!",
@@ -27,7 +28,7 @@ const actions = [
 ];
 
 const notifications: NotificationItem[] = Array.from({ length: 100 }, (_, i) => ({
-  name: `${firstNames[(i * 7) % firstNames.length]} ${lastInitials[(i * 5) % lastInitials.length]}`,
+  name: `${firstNames[(i * 3) % firstNames.length]} ${lastInitials[(i * 7) % lastInitials.length]}`,
   action: actions[i % actions.length]
 }));
 
@@ -64,43 +65,43 @@ export default function AnnouncementBar() {
     <>
       {/* Top Banner Bar Container */}
       <div 
-        className="sticky top-0 z-50 w-full bg-[#2d124d] border-b border-orange-500/40 py-2.5 px-3 sm:px-4 shadow-md min-h-[44px]"
+        className="sticky top-0 z-50 w-full bg-[#f17a20] border-b border-black/15 py-2.5 px-3 sm:px-4 shadow-md min-h-[44px]"
         style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 10px)" }}
       >
         {/* Background Floating Spooky Icons */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
           <Ghost 
-            className="absolute left-[3%] sm:left-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-purple-300 animate-bounce" 
+            className="absolute left-[3%] sm:left-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-white animate-bounce" 
             strokeWidth={2}
           />
           <Flame 
-            className="absolute right-[3%] sm:right-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-orange-400 animate-pulse" 
+            className="absolute right-[3%] sm:right-[7%] top-1/2 -translate-y-1/2 w-4 h-4 text-yellow-200 animate-pulse" 
             strokeWidth={2}
           />
         </div>
 
         {/* Bottom Glowing Accent Line */}
-        <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent w-full opacity-90 overflow-hidden">
-          <div className="absolute inset-0 bg-orange-300 animate-shine"></div>
+        <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-white/70 to-transparent w-full opacity-90 overflow-hidden">
+          <div className="absolute inset-0 bg-white animate-shine"></div>
         </div>
       </div>
 
       {/* Floating Social Proof Toast */}
       {currentNotif && (
         <div
-          className={`fixed top-16 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-purple-300 bg-[#2d124d] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
+          className={`fixed top-16 left-3 right-3 sm:left-4 sm:right-auto z-[9999] max-w-[350px] mx-auto sm:mx-0 flex items-center gap-2.5 rounded-full border border-orange-300/40 bg-[#f17a20] text-white px-3.5 py-2 shadow-2xl transition-all duration-300 ease-in-out pointer-events-none ${
             isVisible
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"
           }`}
         >
-          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-500 text-slate-950">
-            <Check className="w-3 h-3 text-slate-950" strokeWidth={3} />
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-[#f17a20]">
+            <Check className="w-3 h-3 text-[#f17a20]" strokeWidth={3} />
           </div>
 
           <div className="text-[10px] sm:text-[11px] text-white truncate leading-tight">
-            <span className="font-extrabold text-orange-300">{currentNotif.name} </span>
-            <span className="text-purple-100">{currentNotif.action}</span>
+            <span className="font-extrabold text-yellow-100">{currentNotif.name} </span>
+            <span className="text-white/90">{currentNotif.action}</span>
           </div>
         </div>
       )}
